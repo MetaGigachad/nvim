@@ -1,0 +1,2 @@
+# Metagigachad's Neovim Configuration
+
