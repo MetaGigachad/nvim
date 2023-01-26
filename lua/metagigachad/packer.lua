@@ -39,6 +39,8 @@ return require('packer').startup({function(use)
     use 'mfussenegger/nvim-dap'
     ---- Comments
     use "terrortylor/nvim-comment"
+    ---- Tools
+    use {'nvim-telescope/telescope.nvim', tag = '0.1.1'}
     ---- Tree Sitter
     use {
         'nvim-treesitter/nvim-treesitter',

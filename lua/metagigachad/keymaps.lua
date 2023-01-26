@@ -25,6 +25,12 @@ keymap("n", "<C-y><C-y>", "\"+yy", opts)
 keymap("v", "<C-y>", "\"+y", opts)
 keymap("x", "<C-y>", "\"+y", opts)
 
+-- Vertical movements
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
+keymap("n", "n", "nzzzv", opts)
+keymap("n", "N", "Nzzzv", opts)
+
 -- Buffer control mappings
 keymap("n", "<leader>bd", ":bdelete<CR>", opts)
 keymap("n", "<leader>bn", ":bn<CR>", opts)
@@ -37,7 +43,7 @@ keymap("n", "<leader>e", ":Ex<CR>", opts)
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         keymap('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
-        keymap('n', '<leader>f', vim.lsp.buf.format, { buffer = args.buf })
+        keymap('n', '<leader>lf', vim.lsp.buf.format, { buffer = args.buf })
         keymap('n', '<leader>r', vim.lsp.buf.rename, { buffer = args.buf })
         keymap('n', '<leader>a', vim.lsp.buf.code_action, { buffer = args.buf })
         keymap('n', 'gl', vim.diagnostic.open_float, { buffer = args.buf })
@@ -45,5 +51,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
         keymap('n', 'gD', vim.lsp.buf.declaration, { buffer = args.buf })
     end,
 })
+
+-- Telescope
+local telescope = require("telescope.builtin")
+keymap("n", "<leader>ff", telescope.find_files, opts)
+keymap("n", "<leader>fp", telescope.git_files, opts)
+keymap("n", "<leader>fg", telescope.live_grep, opts)
+keymap("n", "<leader>fb", telescope.buffers, opts)
+keymap("n", "<leader>ld", telescope.diagnostics, opts)
 
 return M
