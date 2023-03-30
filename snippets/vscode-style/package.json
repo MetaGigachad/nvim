@@ -1,0 +1,11 @@
+{
+    "name": "metagigachad-snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": ["rust"],
+                "path": "./snippets/rust.json"
+            }
+        ]
+    }
+}

@@ -1,4 +1,3 @@
-require("telescope").setup({
-	pickers = {
-	},
-})
+require('telescope').setup {
+    pickers = {},
+}

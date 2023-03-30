@@ -1,0 +1,21 @@
+-- vim.opt.termguicolors = true
+-- require("bufferline").setup({
+-- 	options = {
+-- 		groups = {
+-- 			items = {
+-- 				{
+-- 					name = "E",
+-- 					matcher = function(buf)
+-- 						return buf.buftype == ""
+-- 					end,
+-- 				},
+-- 				{
+-- 					name = "T",
+-- 					matcher = function(buf)
+-- 						return buf.buftype == "terminal"
+-- 					end,
+-- 				},
+-- 			},
+-- 		},
+-- 	},
+-- })

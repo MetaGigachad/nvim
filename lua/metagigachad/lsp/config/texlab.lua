@@ -1,13 +1,13 @@
-require 'lspconfig'.texlab.setup {
+require('lspconfig').texlab.setup {
     settings = {
         texlab = {
-            auxDirectory = "~/.local/share/latex/aux",
-            bibtexFormatter = "texlab",
+            auxDirectory = '~/.local/share/latex/aux',
+            bibtexFormatter = 'texlab',
             build = {
-                args = { "-interaction=nonstopmode", "-synctex=1", "%f" },
-                executable = "latexmk",
+                args = { '-interaction=nonstopmode', '-synctex=1', '%f' },
+                executable = 'latexmk',
                 forwardSearchAfter = false,
-                onSave = false
+                onSave = false,
             },
             chktex = {
                 onEdit = false,
@@ -16,12 +16,12 @@ require 'lspconfig'.texlab.setup {
             diagnosticsDelay = 300,
             formatterLineLength = 80,
             forwardSearch = {
-                args = {}
+                args = {},
             },
-            latexFormatter = "latexindent",
+            latexFormatter = 'latexindent',
             latexindent = {
-                modifyLineBreaks = true
-            }
-        }
-    }
+                modifyLineBreaks = true,
+            },
+        },
+    },
 }

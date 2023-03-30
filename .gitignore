@@ -1,2 +1,4 @@
 plugin
-lua/.luarc.json
+spell
+lua/compiled
+.luarc.json

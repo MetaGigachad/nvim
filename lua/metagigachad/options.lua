@@ -1,5 +1,7 @@
 local options = {
     fileencoding = 'utf-8',
+    swapfile = false,
+    showmode = false,
 
     -- Splits
     splitbelow = true,
@@ -15,11 +17,15 @@ local options = {
     -- Line numbers
     number = true,
     relativenumber = true,
-    signcolumn = "yes",
+    signcolumn = 'yes',
 
     -- Completion pop-up size
     pumheight = 12,
     pumwidth = 60,
+
+    -- Spell check
+    spell = false,
+    spelllang = 'en_us,ru',
 }
 
 for key, val in pairs(options) do
