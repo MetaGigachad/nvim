@@ -1,12 +1,13 @@
 local servers = {
     'lua_ls',
-    'rust_analyzer',
+    -- 'rust_analyzer',
     'texlab',
     'clangd',
     -- "pyright",
     'pylsp',
     'html',
     'cssls',
+    'tsserver',
 }
 
 -- Install servers

@@ -42,7 +42,7 @@ return packer.startup {
         use 'hrsh7th/cmp-nvim-lsp'
         use 'hrsh7th/cmp-buffer'
         use 'hrsh7th/cmp-path'
-        --    use 'hrsh7th/cmp-cmdline'
+        use 'hrsh7th/cmp-cmdline'
         use 'hrsh7th/nvim-cmp'
         use 'saadparwaiz1/cmp_luasnip'
         ---- DAP
@@ -51,6 +51,14 @@ return packer.startup {
         use 'terrortylor/nvim-comment'
         ---- Tools
         use { 'nvim-telescope/telescope.nvim', tag = '0.1.1' }
+        use {
+            'nvim-telescope/telescope-file-browser.nvim',
+            requires = {
+                'nvim-telescope/telescope.nvim',
+                'nvim-lua/plenary.nvim',
+                'nvim-tree/nvim-web-devicons',
+            },
+        }
         ---- Tree Sitter
         use {
             'nvim-treesitter/nvim-treesitter',
@@ -65,16 +73,12 @@ return packer.startup {
         ---- Org-Mode
         use {
             'nvim-orgmode/orgmode',
-            config = function()
-                require('orgmode').setup {}
-            end,
+            config = function() require('orgmode').setup {} end,
         }
         ---- Markdown
         use {
             'iamcco/markdown-preview.nvim',
-            run = function()
-                vim.fn['mkdp#util#install']()
-            end,
+            run = function() vim.fn['mkdp#util#install']() end,
         }
         ---- LaTeX
         use 'lervag/vimtex'
@@ -86,6 +90,8 @@ return packer.startup {
         ---- Themes
         use 'folke/tokyonight.nvim'
         use { 'catppuccin/nvim', as = 'catppuccin' }
+        ---- Nicer folds
+        use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
         -- Automatically set up your configuration after cloning packer.nvim
         -- Put this at the end after all plugins
@@ -96,9 +102,7 @@ return packer.startup {
 
     config = {
         display = {
-            open_fn = function()
-                return require('packer.util').float { border = 'single' }
-            end,
+            open_fn = function() return require('packer.util').float { border = 'single' } end,
         },
     },
 }

@@ -31,4 +31,37 @@ require('tokyonight').setup {
     end,
 }
 
-vim.cmd [[colorscheme catppuccin-mocha]]
+require('catppuccin').setup {
+    integrations = {
+        telescope = false,
+    },
+    custom_highlights = function(C)
+        return {
+            -- Telescope
+            TelescopeNormal = { link = 'NormalFloat' },
+            TelescopeBorder = { link = 'FloatBorder' },
+            TelescopeSelectionCaret = { fg = C.text, bg = C.surface0 },
+            TelescopeSelection = {
+                fg = O.transparent_background and C.pink or C.text,
+                bg = O.transparent_background and C.none or C.surface0,
+                style = { 'bold' },
+            },
+            TelescopeMatching = { fg = C.red },
+            TelescopePromptPrefix = { bg = C.surface0 },
+            TelescopePromptNormal = { bg = C.surface0 },
+            TelescopeResultsNormal = { bg = C.mantle },
+            TelescopePreviewNormal = { bg = C.mantle },
+            TelescopePromptBorder = { bg = C.surface0 },
+            TelescopeResultsBorder = { bg = C.mantle },
+            TelescopePreviewBorder = { bg = C.mantle },
+            TelescopePromptTitle = { fg = C.mantle, bg = C.pink },
+            TelescopeResultsTitle = { fg = C.mantle, bg = C.lavender },
+            TelescopePreviewTitle = { fg = C.mantle, bg = C.green },
+            -- Winbar
+            WinBar = { fg = C.pink, bold = true },
+            WinBarNC = { fg = C.text, bold = true },
+        }
+    end,
+}
+
+vim.cmd.colorscheme 'catppuccin-mocha'

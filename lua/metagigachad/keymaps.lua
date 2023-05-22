@@ -23,7 +23,8 @@ vim.g.maplocalleader = ' m'
 -- * (s) spell check toggle
 --
 -- (f) Files:
--- * (e) explore
+-- * (e) browse (current buffer location)
+-- * (e) explore (cwd)
 -- * (f) find
 -- * (g) grep
 --
@@ -33,6 +34,12 @@ vim.g.maplocalleader = ' m'
 -- (h) Nohlseacrch
 --
 -- (m) Local leader
+--
+-- (o) Org
+-- * ...
+--
+-- (s) Search
+-- * (m) man pages
 --
 -- (t) Terminal
 -- ]]
@@ -49,11 +56,16 @@ vim.g.maplocalleader = ' m'
 keymap({ 'n', 'v', 'x' }, '<C-p>', '"+p', opts)
 keymap('n', '<C-y><C-y>', '"+yy', opts)
 keymap({ 'v', 'x' }, '<C-y>', '"+y', opts)
+keymap('v', '<C-x>', '"+x', opts)
+
+-- Neovim controls
+keymap('n', '<A-Esc>', ':qall<CR>', opts)
+keymap({ 'i', 't' }, '<A-Esc>', '<C-\\><C-N>:wqall!<CR>', opts)
 
 -- Buffer control mappings
 keymap('n', '<A-n>', ':bn<CR>', opts)
 keymap('n', '<A-N>', ':bp<CR>', opts)
-keymap('n', '<A-c>', ':bdelete<CR>', opts)
+keymap('n', '<A-c>', ':bdelete!<CR>', opts)
 keymap({ 'i', 't' }, '<A-n>', '<C-\\><C-N>:bn<CR>', opts)
 keymap({ 'i', 't' }, '<A-N>', '<C-\\><C-N>:bp<CR>', opts)
 keymap({ 'i', 't' }, '<A-c>', '<C-\\><C-N>:bdelete<CR>', opts)
@@ -77,10 +89,10 @@ keymap({ 'i', 't' }, '<A-s>', '<C-\\><C-N><C-w>s:Ex<CR>', opts)
 keymap({ 'i', 't' }, '<A-v>', '<C-\\><C-N><C-w>v:Ex<CR>', opts)
 
 -- Tab navigation
-keymap('n', '<A-1>', ':1tabnext<CR>', opts)
-keymap('n', '<A-2>', ':2tabnext<CR>', opts)
-keymap('n', '<A-3>', ':3tabnext<CR>', opts)
-keymap('n', '<A-4>', ':4tabnext<CR>', opts)
+keymap('n', '<A-!>', ':1tabnext<CR>', opts)
+keymap('n', '<A-@>', ':2tabnext<CR>', opts)
+keymap('n', '<A-#>', ':3tabnext<CR>', opts)
+keymap('n', '<A-$>', ':4tabnext<CR>', opts)
 keymap({ 'i', 't' }, '<A-1>', '<C-\\><C-N>:1tabnext<CR>', opts)
 keymap({ 'i', 't' }, '<A-2>', '<C-\\><C-N>:2tabnext<CR>', opts)
 keymap({ 'i', 't' }, '<A-3>', '<C-\\><C-N>:3tabnext<CR>', opts)
@@ -109,9 +121,6 @@ keymap('n', '<leader>es', ':set spell!<CR>', opts)
 -- Command mode unmap
 keymap('n', 'q:', '', opts)
 
--- Explore
-keymap('n', '<leader>fe', ':Ex<CR>', opts)
-
 -- LSP
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
@@ -126,36 +135,34 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Telescope
-local telescope = require 'telescope.builtin'
-keymap('n', '<leader>bf', telescope.buffers, opts)
-keymap('n', '<leader>cd', telescope.diagnostics, opts)
-keymap('n', '<leader>ec', telescope.commands, opts)
-keymap('n', '<leader>ff', telescope.find_files, opts)
-keymap('n', '<leader>fg', telescope.live_grep, opts)
-keymap('n', '<leader>gf', telescope.git_files, opts)
+local telescope = require 'telescope'
+telescope.builtin = require 'telescope.builtin'
+keymap('n', '<leader>bf', telescope.builtin.buffers, opts)
+keymap('n', '<leader>cd', telescope.builtin.diagnostics, opts)
+keymap('n', '<leader>ec', telescope.builtin.commands, opts)
+keymap('n', '<leader>fb', telescope.extensions.file_browser.file_browser, opts)
+keymap('n', '<leader>fe', ":Telescope file_browser path=%:p:h select_buffer=true<CR>", opts)
+keymap('n', '<leader>ff', telescope.builtin.find_files, opts)
+keymap('n', '<leader>fg', telescope.builtin.live_grep, opts)
+keymap('n', '<leader>gf', telescope.builtin.git_files, opts)
+keymap('n', '<leader>sm', function() telescope.builtin.man_pages { sections = { '2', '3', '3type', '7' } } end, opts)
 
 -- Harpoon
 local harpoon_mark = require 'harpoon.mark'
 local harpoon_ui = require 'harpoon.ui'
-keymap('n', '<M-a>', harpoon_mark.add_file, opts)
-keymap('n', '<M-0>', harpoon_ui.toggle_quick_menu, opts)
-keymap('n', '<M-7>', function()
-    harpoon_ui.nav_file(1)
-end, opts)
-keymap('n', '<M-8>', function()
-    harpoon_ui.nav_file(2)
-end, opts)
-keymap('n', '<M-9>', function()
-    harpoon_ui.nav_file(3)
-end, opts)
-keymap({ 'i', 't' }, '<M-a>', harpoon_mark.add_file, opts)
-keymap({ 'i', 't' }, '<M-0>', harpoon_ui.toggle_quick_menu, opts)
-keymap({ 'i', 't' }, '<M-7>', function()
-    harpoon_ui.nav_file(1)
-end, opts)
-keymap({ 'i', 't' }, '<M-8>', function()
-    harpoon_ui.nav_file(2)
-end, opts)
-keymap({ 'i', 't' }, '<M-9>', function()
-    harpoon_ui.nav_file(3)
-end, opts)
+local harpoon_term = require 'harpoon.term'
+keymap({ 'n', 'i', 't' }, '<M-a>', harpoon_mark.add_file, opts)
+keymap({ 'n', 'i', 't' }, '<M-->', harpoon_ui.toggle_quick_menu, opts)
+keymap({ 'n', 'i', 't' }, '<M-1>', function() harpoon_ui.nav_file(1) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-2>', function() harpoon_ui.nav_file(2) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-3>', function() harpoon_ui.nav_file(3) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-4>', function() harpoon_ui.nav_file(4) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-0>', function() harpoon_term.gotoTerminal(1) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-9>', function() harpoon_term.gotoTerminal(2) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-8>', function() harpoon_term.gotoTerminal(3) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-7>', function() harpoon_term.gotoTerminal(4) end, opts)
+
+-- UFO (Better folding formatting)
+local ufo = require 'ufo'
+keymap('n', 'zR', ufo.openAllFolds)
+keymap('n', 'zM', ufo.closeAllFolds)

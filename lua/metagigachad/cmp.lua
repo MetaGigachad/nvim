@@ -17,9 +17,7 @@ require('luasnip.loaders.from_vscode').lazy_load {
 cmp.setup {
     snippet = {
         -- REQUIRED - you must specify a snippet engine
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
+        expand = function(args) luasnip.lsp_expand(args.body) end,
     },
     window = {
         -- completion = cmp.config.window.bordered(),
@@ -41,7 +39,6 @@ cmp.setup {
                 fallback()
             end
         end, { 'i', 's' }),
-
         ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()

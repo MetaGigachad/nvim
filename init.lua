@@ -1,10 +1,8 @@
 if vim.g.vscode then
     require 'metagigachad.vscode'
 else
-    require 'metagigachad.options'
     require 'metagigachad.packer'
     require 'compiled.packer_compiled'
-    require 'metagigachad.colorscheme'
     require 'metagigachad.bufferline'
     require 'metagigachad.cmp'
     require 'metagigachad.lsp.lsp'
@@ -17,6 +15,8 @@ else
     require 'metagigachad.latex'
     require 'metagigachad.git'
     require 'metagigachad.lualine'
-    require 'metagigachad.keymaps'
     require 'metagigachad.telescope'
+    require 'metagigachad.colorscheme'
+    require 'metagigachad.keymaps'
+    require 'metagigachad.options'
 end
