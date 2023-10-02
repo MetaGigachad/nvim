@@ -28,6 +28,8 @@ require('nvim-treesitter.configs').setup {
         'javascript',
         'typescript',
         'tsx',
+        'nix',
+        'svelte',
     },
 
     highlight = {

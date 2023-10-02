@@ -2,7 +2,7 @@ require('lspconfig').pyright.setup {
     settings = {
         python = {
             analysis = {
-                useLibraryCodeForTypes = false,
+                useLibraryCodeForTypes = true,
             },
         },
     },

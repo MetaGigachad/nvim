@@ -17,6 +17,7 @@ vim.g.maplocalleader = ' m'
 -- * (d) diagnostics
 -- * (f) format
 -- * (r) rename
+-- * (s) symbols
 --
 -- (e) Editor:
 -- * (c) commands
@@ -141,11 +142,12 @@ keymap('n', '<leader>bf', telescope.builtin.buffers, opts)
 keymap('n', '<leader>cd', telescope.builtin.diagnostics, opts)
 keymap('n', '<leader>ec', telescope.builtin.commands, opts)
 keymap('n', '<leader>fb', telescope.extensions.file_browser.file_browser, opts)
-keymap('n', '<leader>fe', ":Telescope file_browser path=%:p:h select_buffer=true<CR>", opts)
+keymap('n', '<leader>fe', ':Telescope file_browser path=%:p:h<CR>', opts)
 keymap('n', '<leader>ff', telescope.builtin.find_files, opts)
 keymap('n', '<leader>fg', telescope.builtin.live_grep, opts)
 keymap('n', '<leader>gf', telescope.builtin.git_files, opts)
-keymap('n', '<leader>sm', function() telescope.builtin.man_pages { sections = { '2', '3', '3type', '7' } } end, opts)
+keymap('n', '<leader>cs', telescope.builtin.lsp_document_symbols, opts)
+keymap('n', '<leader>sm', function() telescope.builtin.man_pages { sections = { 'ALL' } } end, opts)
 
 -- Harpoon
 local harpoon_mark = require 'harpoon.mark'

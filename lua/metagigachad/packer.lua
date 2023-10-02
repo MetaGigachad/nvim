@@ -30,9 +30,10 @@ return packer.startup {
         use { 'akinsho/bufferline.nvim', tag = 'v3.*', requires = 'nvim-tree/nvim-web-devicons' }
         -- Navigations
         use 'ThePrimeagen/harpoon'
+        use 'direnv/direnv.vim'
         ---- LSP
-        use 'williamboman/mason.nvim'
-        use 'williamboman/mason-lspconfig.nvim'
+        -- use 'williamboman/mason.nvim'
+        -- use 'williamboman/mason-lspconfig.nvim'
         use 'neovim/nvim-lspconfig'
         use 'jose-elias-alvarez/null-ls.nvim'
         use 'simrat39/inlay-hints.nvim'
@@ -68,6 +69,8 @@ return packer.startup {
             end,
         }
         use 'nvim-treesitter/playground'
+        ---- Css
+        use 'NvChad/nvim-colorizer.lua'
         ---- Rust
         use 'simrat39/rust-tools.nvim'
         ---- Org-Mode

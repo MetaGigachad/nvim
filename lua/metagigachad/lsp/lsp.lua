@@ -3,18 +3,22 @@ local servers = {
     -- 'rust_analyzer',
     'texlab',
     'clangd',
-    -- "pyright",
-    'pylsp',
+    'pyright',
+    -- 'pylsp',
     'html',
     'cssls',
     'tsserver',
+    'nil_ls',
+    'svelte',
+    'tailwindcss',
+    'cmake',
 }
 
 -- Install servers
-require('mason').setup()
-require('mason-lspconfig').setup {
-    ensure_installed = servers,
-}
+-- require('mason').setup()
+-- require('mason-lspconfig').setup {
+--    ensure_installed = servers,
+-- }
 
 -- Load configurations
 local prefix = 'metagigachad.lsp.config.'

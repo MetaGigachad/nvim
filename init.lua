@@ -8,6 +8,7 @@ else
     require 'metagigachad.lsp.lsp'
     require 'metagigachad.null-ls'
     require 'metagigachad.lsp.inlay_hints'
+    require 'metagigachad.colorizer'
     require 'metagigachad.treesitter'
     require 'metagigachad.comment'
     require 'metagigachad.rust-tools'
