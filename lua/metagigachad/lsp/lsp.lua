@@ -1,6 +1,5 @@
 local servers = {
     'lua_ls',
-    -- 'rust_analyzer',
     'texlab',
     'clangd',
     'pyright',
@@ -15,10 +14,10 @@ local servers = {
 }
 
 -- Install servers
--- require('mason').setup()
--- require('mason-lspconfig').setup {
---    ensure_installed = servers,
--- }
+require('mason').setup()
+require('mason-lspconfig').setup {
+   ensure_installed = servers,
+}
 
 -- Load configurations
 local prefix = 'metagigachad.lsp.config.'

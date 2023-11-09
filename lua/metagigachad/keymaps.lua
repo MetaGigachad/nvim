@@ -54,10 +54,11 @@ vim.g.maplocalleader = ' m'
 --   command_mode = "c",
 
 -- Map system clipboard to P and Y
-keymap({ 'n', 'v', 'x' }, '<C-p>', '"+p', opts)
-keymap('n', '<C-y><C-y>', '"+yy', opts)
-keymap({ 'v', 'x' }, '<C-y>', '"+y', opts)
-keymap('v', '<C-x>', '"+x', opts)
+keymap({ 'n', 'v', 'x' }, 's', '"+', opts)
+-- keymap({ 'n', 'v', 'x' }, '<C-p>', '"+p', opts)
+-- keymap('n', '<C-y><C-y>', '"+yy', opts)
+-- keymap({ 'v', 'x' }, '<C-y>', '"+y', opts)
+-- keymap('v', '<C-x>', '"+x', opts)
 
 -- Neovim controls
 keymap('n', '<A-Esc>', ':qall<CR>', opts)

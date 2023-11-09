@@ -1,8 +1,7 @@
 if vim.g.vscode then
-    require 'metagigachad.vscode'
+    require 'metagigachad.vscode.keymaps'
 else
     require 'metagigachad.packer'
-    require 'compiled.packer_compiled'
     require 'metagigachad.bufferline'
     require 'metagigachad.cmp'
     require 'metagigachad.lsp.lsp'

@@ -30,10 +30,10 @@ return packer.startup {
         use { 'akinsho/bufferline.nvim', tag = 'v3.*', requires = 'nvim-tree/nvim-web-devicons' }
         -- Navigations
         use 'ThePrimeagen/harpoon'
-        use 'direnv/direnv.vim'
+        -- use 'direnv/direnv.vim'
         ---- LSP
-        -- use 'williamboman/mason.nvim'
-        -- use 'williamboman/mason-lspconfig.nvim'
+        use 'williamboman/mason.nvim'
+        use 'williamboman/mason-lspconfig.nvim'
         use 'neovim/nvim-lspconfig'
         use 'jose-elias-alvarez/null-ls.nvim'
         use 'simrat39/inlay-hints.nvim'
@@ -51,7 +51,7 @@ return packer.startup {
         ---- Comments
         use 'terrortylor/nvim-comment'
         ---- Tools
-        use { 'nvim-telescope/telescope.nvim', tag = '0.1.1' }
+        use 'nvim-telescope/telescope.nvim'
         use {
             'nvim-telescope/telescope-file-browser.nvim',
             requires = {
