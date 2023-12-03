@@ -93,6 +93,7 @@ return packer.startup {
         ---- Themes
         use 'folke/tokyonight.nvim'
         use { 'catppuccin/nvim', as = 'catppuccin' }
+        use 'projekt0n/github-nvim-theme'
         ---- Nicer folds
         use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 

@@ -7,7 +7,7 @@ local servers = {
     'html',
     'cssls',
     'tsserver',
-    'nil_ls',
+    -- 'nil_ls',
     'svelte',
     'tailwindcss',
     'cmake',
