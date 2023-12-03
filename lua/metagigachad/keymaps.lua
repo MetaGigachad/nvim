@@ -151,19 +151,13 @@ keymap('n', '<leader>cs', telescope.builtin.lsp_document_symbols, opts)
 keymap('n', '<leader>sm', function() telescope.builtin.man_pages { sections = { 'ALL' } } end, opts)
 
 -- Harpoon
-local harpoon_mark = require 'harpoon.mark'
-local harpoon_ui = require 'harpoon.ui'
-local harpoon_term = require 'harpoon.term'
-keymap({ 'n', 'i', 't' }, '<M-a>', harpoon_mark.add_file, opts)
-keymap({ 'n', 'i', 't' }, '<M-->', harpoon_ui.toggle_quick_menu, opts)
-keymap({ 'n', 'i', 't' }, '<M-1>', function() harpoon_ui.nav_file(1) end, opts)
-keymap({ 'n', 'i', 't' }, '<M-2>', function() harpoon_ui.nav_file(2) end, opts)
-keymap({ 'n', 'i', 't' }, '<M-3>', function() harpoon_ui.nav_file(3) end, opts)
-keymap({ 'n', 'i', 't' }, '<M-4>', function() harpoon_ui.nav_file(4) end, opts)
-keymap({ 'n', 'i', 't' }, '<M-0>', function() harpoon_term.gotoTerminal(1) end, opts)
-keymap({ 'n', 'i', 't' }, '<M-9>', function() harpoon_term.gotoTerminal(2) end, opts)
-keymap({ 'n', 'i', 't' }, '<M-8>', function() harpoon_term.gotoTerminal(3) end, opts)
-keymap({ 'n', 'i', 't' }, '<M-7>', function() harpoon_term.gotoTerminal(4) end, opts)
+local harpoon = require 'harpoon'
+keymap({ 'n', 'i', 't' }, '<M-a>', function() harpoon:list():append() end, opts)
+keymap({ 'n', 'i', 't' }, '<M-->', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-1>', function() harpoon:list():select(1) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-2>', function() harpoon:list():select(2) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-3>', function() harpoon:list():select(3) end, opts)
+keymap({ 'n', 'i', 't' }, '<M-4>', function() harpoon:list():select(4) end, opts)
 
 -- UFO (Better folding formatting)
 local ufo = require 'ufo'
