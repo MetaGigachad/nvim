@@ -66,4 +66,4 @@ require('catppuccin').setup {
 
 require('github-theme').setup {}
 
-vim.cmd.colorscheme 'catppuccin-mocha'
+vim.cmd.colorscheme 'vscode'
